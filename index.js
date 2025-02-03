@@ -20,7 +20,8 @@ const perguntar = (pergunta) => {
 
     rl.close();
 
-    const link = `https://www.bing.com/maps?q=${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`;
+    //const link = `https://www.bing.com/maps?q=${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`;
+    const link = `https://www.google.com/maps?q=${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`;
     console.log(link)
 
     const browser = await puppeteer.launch({ headless: false, slowMo: 500 });
