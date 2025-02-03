@@ -1,4 +1,3 @@
-const { resolve } = require('path');
 const puppeteer = require('puppeteer');
 const readline = require('readline');
 
@@ -21,15 +20,19 @@ const perguntar = (pergunta) => {
 
     rl.close();
 
-    const link = `https://www.google.com/search?q=${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`;
+    const link = `https://www.bing.com/maps?q=${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`;
     console.log(link)
 
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: false, slowMo: 500 });
     const page = await browser.newPage();
-    await page.goto(link, { waitUntil: 'load' });
+    await page.setUserAgent(
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    );
+
+    await page.goto(link, { waitUntil: 'networkidle2' });
 
     console.log('Acessa a pagina');
 
-    await browser.close();
-    console.log('finaliza o navegador');
+    //await browser.close();
+    //console.log('finaliza o navegador');
 })();
