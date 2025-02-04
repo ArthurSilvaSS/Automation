@@ -1,0 +1,44 @@
+[
+  {
+    "nome": "Laura Coelho",
+    "avaliacao": "5,0",
+    "qtdAvaliacoes": "(3)",
+    "endereco": "5,0(3)",
+    "telefone": "5,0"
+  },
+  {
+    "nome": "Dr. Consulta - São Bernardo Centro",
+    "avaliacao": "3,5",
+    "qtdAvaliacoes": "(347)",
+    "endereco": "3,5(347)",
+    "telefone": "3,5"
+  },
+  {
+    "nome": "MEDSELF CONSULTÓRIOS MÉDICOS",
+    "avaliacao": "3,5",
+    "qtdAvaliacoes": "(4)",
+    "endereco": "3,5(4)",
+    "telefone": "3,5"
+  },
+  {
+    "nome": "Santa Saúde",
+    "avaliacao": "2,3",
+    "qtdAvaliacoes": "(173)",
+    "endereco": "2,3(173)",
+    "telefone": "2,3"
+  },
+  {
+    "nome": "Instituto Mendonça Costa - Endoscopia e colonoscopia em Santos",
+    "avaliacao": "4,9",
+    "qtdAvaliacoes": "(1.530)",
+    "endereco": "4,9(1.530)",
+    "telefone": "4,9"
+  },
+  {
+    "nome": "APM Santos",
+    "avaliacao": "4,4",
+    "qtdAvaliacoes": "(117)",
+    "endereco": "4,4(117)",
+    "telefone": "4,4"
+  }
+]
