@@ -58,5 +58,5 @@ const extrairDados = async (page) => {
         console.log(`Telefone: ${item.telefone}`);
     });
 
-    await browser.close();
+    // await browser.close();
 })();
