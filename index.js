@@ -15,10 +15,8 @@ const perguntar = (pergunta) => {
 };
 
 const extrairDados = async (page) => {
-    await page.waitForSelector(".Nv2PK.tH5CWc.THOPZb", { visible: true });
-
     return await page.evaluate(() => {
-        const resultados = Array.from(document.querySelectorAll(".Nv2PK.tH5CWc.THOPZb"));
+        const resultados = Array.from(document.querySelectorAll('div[jsaction*="mouseover:pane"]'));
 
         return resultados.map(item => {
             const nome = item.querySelector(".qBF1Pd")?.textContent?.trim() || "N/A";
@@ -32,12 +30,34 @@ const extrairDados = async (page) => {
     });
 };
 
+
+const scrollFeed = async (page) => {
+    await page.evaluate(async () => {
+        const feed = document.querySelector('div[role="feed"]');
+        if (!feed) return;
+
+        let previousHeight = 0;
+        while (true) {
+            feed.scrollTo(0, feed.scrollHeight);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            const element = document.querySelector('.HlvSq');
+            const newHeight = feed.scrollHeight;
+            if (element){
+                break;
+            }
+            previousHeight = newHeight;
+        }
+    });
+};
+
 (async () => {
-    const LocalBuscado = await perguntar('Digite o comércio a ser buscado: ');
-    const CidadeBuscada = await perguntar('Qual a cidade buscada: ');
+    const LocalBuscado = "Mercado"
+    // await perguntar('Digite o comércio a ser buscado: ');
+    const CidadeBuscada = "Cidade de São Paulo"
+    // await perguntar('Qual a cidade buscada: ');
     rl.close();
 
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
     await page.goto(`https://www.google.com/maps/search/${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`, {
@@ -45,6 +65,7 @@ const extrairDados = async (page) => {
         timeout: 30000
     });
 
+    await scrollFeed(page);
     const resultados = await extrairDados(page);
 
     // Exibe os resultados formatados no console
@@ -57,6 +78,4 @@ const extrairDados = async (page) => {
         console.log(`Endereço: ${item.endereco}`);
         console.log(`Telefone: ${item.telefone}`);
     });
-
-    await browser.close();
 })();
