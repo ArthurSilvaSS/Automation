@@ -1,5 +1,7 @@
+
 const puppeteer = require('puppeteer');
 const readline = require('readline');
+const extrairDados = require('./extrairDados');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -14,23 +16,6 @@ const perguntar = (pergunta) => {
     });
 };
 
-const extrairDados = async (page) => {
-    return await page.evaluate(() => {
-        const resultados = Array.from(document.querySelectorAll('div[jsaction*="mouseover:pane"]'));
-
-        return resultados.map(item => {
-            const nome = item.querySelector(".qBF1Pd")?.textContent?.trim() || "N/A";
-            const avaliacao = item.querySelector(".MW4etd")?.textContent?.trim() || "N/A";
-            const qtdAvaliacoes = item.querySelector(".UY7F9")?.textContent?.trim() || "N/A";
-            const endereco = item.querySelector(".W4Efsd")?.textContent?.trim() || "N/A";
-            const telefone = item.querySelector(".UsdlK")?.textContent?.trim() || "N/A";
-
-            return { nome, avaliacao, qtdAvaliacoes, endereco, telefone };
-        });
-    });
-};
-
-
 const scrollFeed = async (page) => {
     await page.evaluate(async () => {
         const feed = document.querySelector('div[role="feed"]');
@@ -42,7 +27,7 @@ const scrollFeed = async (page) => {
             await new Promise(resolve => setTimeout(resolve, 1000));
             const element = document.querySelector('.HlvSq');
             const newHeight = feed.scrollHeight;
-            if (element){
+            if (element) {
                 break;
             }
             previousHeight = newHeight;
@@ -51,13 +36,13 @@ const scrollFeed = async (page) => {
 };
 
 (async () => {
-    const LocalBuscado = "Mercado"
+    const LocalBuscado = "medicos"
     // await perguntar('Digite o comércio a ser buscado: ');
-    const CidadeBuscada = "Cidade de São Paulo"
+    const CidadeBuscada = "santa rita do passa quatro"
     // await perguntar('Qual a cidade buscada: ');
     rl.close();
 
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
     await page.goto(`https://www.google.com/maps/search/${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`, {
@@ -78,9 +63,5 @@ const scrollFeed = async (page) => {
         console.log(`Endereço: ${item.endereco}`);
         console.log(`Telefone: ${item.telefone}`);
     });
-<<<<<<< HEAD
-
-    // await browser.close();
-=======
->>>>>>> 3051d556277d0d717279ef5277f7b65881e41fc5
+    await browser.close();
 })();
