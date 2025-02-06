@@ -2,6 +2,7 @@
 const puppeteer = require('puppeteer');
 const readline = require('readline');
 const extrairDados = require('./extrairDados');
+const exibirDados = require('./exibirDados');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -49,19 +50,10 @@ const scrollFeed = async (page) => {
         waitUntil: 'networkidle2',
         timeout: 30000
     });
-
+    await page.waitForSelector('div[role="feed"]', { visible: true, timeout: 30000 });
     await scrollFeed(page);
     const resultados = await extrairDados(page);
+    exibirDados(resultados);
 
-    // Exibe os resultados formatados no console
-    console.log("\n📋 Resultados encontrados:");
-    resultados.forEach((item, index) => {
-        console.log(`\n=== Item ${index + 1} ===`);
-        console.log(`Nome: ${item.nome}`);
-        console.log(`Avaliação: ${item.avaliacao}`);
-        console.log(`Quantidade de avaliações: ${item.qtdAvaliacoes}`);
-        console.log(`Endereço: ${item.endereco}`);
-        console.log(`Telefone: ${item.telefone}`);
-    });
     await browser.close();
 })();
