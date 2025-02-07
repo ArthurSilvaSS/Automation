@@ -24,7 +24,9 @@ const extrairDados = async (page) => {
             .$eval('.UsdlK', el => el.textContent.trim())
             .catch(() => 'N/A');
 
-        resultados.push({ nome, avaliacao, qtdAvaliacoes, endereco, telefone });
+        if (nome !== "N/A" && telefone !== "N/A") {
+            resultados.push({ nome, avaliacao, qtdAvaliacoes, endereco, telefone });
+        }
     }
 
     return resultados;

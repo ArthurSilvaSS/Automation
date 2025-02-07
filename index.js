@@ -31,7 +31,7 @@ const perguntar = (pergunta) => {
         timeout: 30000
     });
     await page.waitForSelector('div[role="feed"]', { visible: true, timeout: 30000 });
-    await scrollFeed(page);
+    await scrollFeed(page, { timeout: 10000 });
     const resultados = await extrairDados(page);
     exibirDados(resultados);
     gerarCSV(resultados, `${LocalBuscado}_${CidadeBuscada}.csv`);
