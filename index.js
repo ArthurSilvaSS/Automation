@@ -4,6 +4,7 @@ const readline = require('readline');
 const extrairDados = require('./extrairDados');
 const exibirDados = require('./exibirDados');
 const gerarCSV = require('./gerarCSV');
+const scrollFeed = require('./scrollFeed');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -17,26 +18,6 @@ const perguntar = (pergunta) => {
         });
     });
 };
-
-const scrollFeed = async (page) => {
-    await page.evaluate(async () => {
-        const feed = document.querySelector('div[role="feed"]');
-        if (!feed) return;
-
-        let previousHeight = 0;
-        while (true) {
-            feed.scrollTo(0, feed.scrollHeight);
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            const element = document.querySelector('.HlvSq');
-            const newHeight = feed.scrollHeight;
-            if (element) {
-                break;
-            }
-            previousHeight = newHeight;
-        }
-    });
-};
-
 (async () => {
     const LocalBuscado = await perguntar('Digite o comércio a ser buscado: ');
     const CidadeBuscada = await perguntar('Qual a cidade buscada: ');
@@ -53,7 +34,7 @@ const scrollFeed = async (page) => {
     await scrollFeed(page);
     const resultados = await extrairDados(page);
     exibirDados(resultados);
-    gerarCSV(resultados, 'medicos_santa_rita.csv');
+    gerarCSV(resultados, `${LocalBuscado}_${CidadeBuscada}.csv`);
 
     await browser.close();
 })();
