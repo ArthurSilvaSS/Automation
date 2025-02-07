@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer');
 const readline = require('readline');
 const extrairDados = require('./extrairDados');
 const exibirDados = require('./exibirDados');
+const gerarCSV = require('./gerarCSV');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -37,10 +38,8 @@ const scrollFeed = async (page) => {
 };
 
 (async () => {
-    const LocalBuscado = "medicos"
-    // await perguntar('Digite o comércio a ser buscado: ');
-    const CidadeBuscada = "santa rita do passa quatro"
-    // await perguntar('Qual a cidade buscada: ');
+    const LocalBuscado = await perguntar('Digite o comércio a ser buscado: ');
+    const CidadeBuscada = await perguntar('Qual a cidade buscada: ');
     rl.close();
 
     const browser = await puppeteer.launch({ headless: false });
@@ -54,6 +53,7 @@ const scrollFeed = async (page) => {
     await scrollFeed(page);
     const resultados = await extrairDados(page);
     exibirDados(resultados);
+    gerarCSV(resultados, 'medicos_santa_rita.csv');
 
     await browser.close();
 })();
