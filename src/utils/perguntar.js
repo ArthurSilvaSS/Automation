@@ -12,4 +12,11 @@ const perguntar = (pergunta) => {
         });
     });
 };
-module.exports = { perguntar, rl };
+async function validarEntrada(entrada, mensagemErro) {
+    while (!entrada) {
+        console.log(mensagemErro);
+        entrada = await perguntar('Por favor, insira novamente: ')
+    }
+    return entrada;
+}
+module.exports = { perguntar, validarEntrada };

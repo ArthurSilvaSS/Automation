@@ -1,6 +1,6 @@
 
 const puppeteer = require('puppeteer');
-const { perguntar, rl } = require('./utils/perguntar');
+const { perguntar, validarEntrada } = require('./utils/perguntar');
 const extrairDados = require('./services/extrairDados');
 const exibirDados = require('./utils/exibirDados');
 const gerarCSV = require('./services/gerarCSV');
@@ -9,7 +9,9 @@ const scrollFeed = require('./services/scrollFeed');
 
 (async () => {
     const LocalBuscado = await perguntar(' 🛎️  Qual servico desejado:  ');
+    LocalBuscado = await validarEntrada(LocalBuscado, '❌  O serviço desejado não pode estar vazio.');
     const CidadeBuscada = await perguntar(' 🏙️  Qual a cidade buscada: ');
+    CidadeBuscada = await validarEntrada(CidadeBuscada, '❌  A cidade buscada não pode estar vazia.');
     rl.close();
 
     const browser = await puppeteer.launch({ headless: true });
