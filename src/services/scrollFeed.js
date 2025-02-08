@@ -1,4 +1,5 @@
-const scrollFeed = async (page) => {
+const puppeteer = require('puppeteer');
+const scrollFeed = async (page, { timeout = 10000 }) => {
     await page.evaluate(async () => {
         const feed = document.querySelector('div[role="feed"]');
         if (!feed) return;

@@ -1,36 +1,30 @@
 
 const puppeteer = require('puppeteer');
-const readline = require('readline');
+const { perguntar, rl } = require('./utils/perguntar');
 const extrairDados = require('./services/extrairDados');
 const exibirDados = require('./utils/exibirDados');
 const gerarCSV = require('./services/gerarCSV');
 const scrollFeed = require('./services/scrollFeed');
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
-const perguntar = (pergunta) => {
-    return new Promise(resolve => {
-        rl.question(pergunta, resposta => {
-            resolve(resposta.trim());
-        });
-    });
-};
 (async () => {
-    const LocalBuscado = await perguntar('Digite o comércio a ser buscado: ');
-    const CidadeBuscada = await perguntar('Qual a cidade buscada: ');
+    const LocalBuscado = await perguntar(' 🛎️  Qual servico desejado:  ');
+    const CidadeBuscada = await perguntar(' 🏙️  Qual a cidade buscada: ');
     rl.close();
 
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
+
+    console.clear();
+    console.log('🔍  Gerando o link de acesso ...');
 
     await page.goto(`https://www.google.com/maps/search/${encodeURIComponent(LocalBuscado)}+${encodeURIComponent(CidadeBuscada)}`, {
         waitUntil: 'networkidle2',
-        timeout: 30000
+        timeout: 60000
     });
-    await page.waitForSelector('div[role="feed"]', { visible: true, timeout: 30000 });
+    await page.waitForSelector('div[role="feed"]', { visible: true, timeout: 60000 });
+    console.log('⏳  Carregando resultados ...');
+    console.clear();
     await scrollFeed(page, { timeout: 10000 });
     const resultados = await extrairDados(page);
     exibirDados(resultados);
