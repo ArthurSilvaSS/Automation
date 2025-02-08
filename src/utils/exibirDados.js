@@ -1,5 +1,3 @@
-const extrairDados = require('./extrairDados');
-
 function exibirDados(resultados) {
     console.log("\n📋 Resultados encontrados:");
     resultados.forEach((item, index) => {

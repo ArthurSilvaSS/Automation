@@ -20,5 +20,5 @@ function gerarCSV(resultados, nomeArquivo = 'resultados.csv') {
         .catch((err) => {
             console.error("Erro ao gerar o arquivo CSV:", err);
         });
-}
+};
 module.exports = gerarCSV;

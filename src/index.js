@@ -1,10 +1,10 @@
 
 const puppeteer = require('puppeteer');
 const readline = require('readline');
-const extrairDados = require('./extrairDados');
-const exibirDados = require('./exibirDados');
-const gerarCSV = require('./gerarCSV');
-const scrollFeed = require('./scrollFeed');
+const extrairDados = require('./services/extrairDados');
+const exibirDados = require('./utils/exibirDados');
+const gerarCSV = require('./services/gerarCSV');
+const scrollFeed = require('./services/scrollFeed');
 
 const rl = readline.createInterface({
     input: process.stdin,
