@@ -10,6 +10,6 @@ function createWindow() {
             contextIsolation: false
         }
     });
-    win.loadFile('index.html')
+    win.loadFile('src/pages/index.html')
 }
 app.whenReady().then(createWindow);
