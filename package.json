@@ -1,4 +1,11 @@
 {
+  "name": "meu-app-electron",
+  "version": "1.0.0",
+  "description": "Aplicativo Electron para automação com Puppeteer",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "dependencies": {
     "csv-writer": "^1.6.0",
     "puppeteer": "^24.1.1"
