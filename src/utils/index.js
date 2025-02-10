@@ -1,10 +1,10 @@
 
 const puppeteer = require('puppeteer');
-const { perguntar, validarEntrada } = require('./utils/perguntar');
-const extrairDados = require('./services/extrairDados');
-const exibirDados = require('./utils/exibirDados');
-const gerarCSV = require('./services/gerarCSV');
-const scrollFeed = require('./services/scrollFeed');
+const { perguntar, validarEntrada } = require('./perguntar');
+const extrairDados = require('../services/extrairDados');
+const exibirDados = require('./exibirDados');
+const gerarCSV = require('../services/gerarCSV');
+const scrollFeed = require('../services/scrollFeed');
 
 
 (async () => {
