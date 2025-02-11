@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <title>Nome do meu APP</title>
+        content="default-src 'self'; script-src 'self' 'sha256-bzIcL/kFUpXJStdH2lwlnlV1m4eA6IIY5ZBvbu5Zscc='; object-src 'none';">
+
+    <title>Busca no Google Maps</title>
 </head>
 
 <body>
-    <h1>MEU APP</h1>
-    <p>busca servico</p>
-    <input type="text" id="servico">
-    <p>busca cidade </p>
-    <input type="text" id="cidade">
-    <button id="buscar">Buscar</button>
+    <h1>Busca no Google Maps</h1>
+    <form id="formBusca">
+        <input type="text" id="servico" placeholder="Serviço" required>
+        <input type="text" id="cidade" placeholder="Cidade" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+        const form = document.getElementById('formBusca');
+        const resultadoDiv = document.getElementById('resultado');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const servico = document.getElementById('servico').value;
+            const cidade = document.getElementById('cidade').value;
+
+            resultadoDiv.innerHTML = 'Buscando...';
+
+            try {
+                const resultado = await window.api.buscar(servico, cidade);
+                resultadoDiv.innerHTML = `Resultado: ${JSON.stringify(resultado)}`;
+            } catch (error) {
+                resultadoDiv.innerHTML = `Erro: ${error.message}`;
+            }
+        });
+
+        window.api.onResultado((data) => {
+            resultadoDiv.innerHTML = `Resultado: ${JSON.stringify(data)}`;
+        });
+    </script>
 </body>
 
 </html>

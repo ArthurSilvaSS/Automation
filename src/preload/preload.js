@@ -1,6 +1,14 @@
+console.log('preload.js carregado!');
+
 const { contextBridge, ipcRenderer } = require('electron');
 
-contextBridge.exposeInMainWorld('electron', {
-    buscar: (data) => ipcRenderer.send('buscar', data), // Envia os dados para o main.js
-    receberResultado: (callback) => ipcRenderer.on('resultado', (_, response) => callback(response)) // Escuta os resultados
+contextBridge.exposeInMainWorld('api', {
+    buscar: (servico, cidade) => {
+        console.log('Chamando método buscar...');
+        return ipcRenderer.invoke('buscar', { servico, cidade });
+    },
+    onResultado: (callback) => {
+        console.log('Registrando listener para resultado...');
+        ipcRenderer.on('resultado', (event, data) => callback(data));
+    }
 });
