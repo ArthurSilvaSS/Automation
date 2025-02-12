@@ -1,18 +1,71 @@
 * {
     margin: 0;
     padding: 0;
-    border: none;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
+/* Centraliza a div principal */
 .main {
     display: flex;
     justify-content: center;
-
+    align-items: center;
     height: 100vh;
-    background-color: #2f3e85;
+    background-color: #f4f4f4;
 }
 
+/* Caixa principal */
 .container {
-    width: 500px;
-    background-color: #fff;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 320px;
+}
+
+/* Estiliza o título */
+.logo h1 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estiliza o formulário */
+.form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.form button:hover {
+    background: #0056b3;
+}
+
+/* Estiliza a área de resultado */
+#resultado {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    color: #333;
 }
