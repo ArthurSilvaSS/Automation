@@ -1,5 +1,5 @@
 function exibirDados(resultados) {
-    console.log("\n📋 Resultados encontrados:");
+    console.log("\n Resultados encontrados:");
     resultados.forEach((item, index) => {
         console.log(`\n=== Item ${index + 1} ===`);
         console.log(`Nome: ${item.nome}`);

@@ -63,7 +63,7 @@ ipcMain.handle('buscar', async (event, { servico, cidade }) => {
         console.log('Página carregada. Aguardando seletor...');
         await page.waitForSelector('div[role="feed"]', { visible: true, timeout: 60000 });
 
-        console.log('⏳ Carregando resultados...');
+        console.log('Carregando resultados...');
         await scrollFeed(page, { timeout: 10000 });
 
         console.log('Extraindo dados...');
@@ -74,10 +74,10 @@ ipcMain.handle('buscar', async (event, { servico, cidade }) => {
 
         await browser.close();
 
-        console.log('✅ Busca concluída!');
+        console.log('Busca concluída!');
         return { success: true, message: 'Busca concluída!', data: resultados };
     } catch (error) {
-        console.error("❌ Erro ao buscar:", error);
+        console.error("Erro ao buscar:", error);
         return { success: false, message: 'Erro na busca.' };
     }
 });
@@ -90,11 +90,11 @@ app.whenReady().then(() => {
     // Opcional: Executar a busca diretamente no terminal (sem frontend)
     if (process.argv.includes('--terminal')) {
         (async () => {
-            const servico = await perguntar(' 🛎️  Qual serviço desejado: ');
-            validarEntrada(servico, ' ❌  O serviço desejado não pode estar vazio.');
+            const servico = await perguntar('Qual serviço desejado: ');
+            validarEntrada(servico, 'O serviço desejado não pode estar vazio.');
 
-            const cidade = await perguntar(' 🏙️  Qual a cidade buscada: ');
-            validarEntrada(cidade, ' ❌  A cidade buscada não pode estar vazia.');
+            const cidade = await perguntar('Qual a cidade buscada: ');
+            validarEntrada(cidade, 'A cidade buscada não pode estar vazia.');
 
             rl.close();
 

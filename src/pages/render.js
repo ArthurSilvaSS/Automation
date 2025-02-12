@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cidade = inputCidade.value.trim();
 
         if (!servico || !cidade) {
-            alert("❌ Preencha todos os campos!");
+            alert("Preencha todos os campos!");
             return;
         }
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Receber a resposta do main.js
     window.api.receberResultado((resposta) => {
-        console.log("📩 Resposta do backend:", resposta);
+        console.log("Resposta do backend:", resposta);
         alert(resposta.message);
     });
 });
