@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'sha256-bzIcL/kFUpXJStdH2lwlnlV1m4eA6IIY5ZBvbu5Zscc='; object-src 'none';">
+    <link rel="stylesheet" href="style.css">
 
     <title>Busca no Google Maps</title>
 </head>
 
 <body>
-    <h1>Busca no Google Maps</h1>
-    <form id="formBusca">
-        <input type="text" id="servico" placeholder="Serviço" required>
-        <input type="text" id="cidade" placeholder="Cidade" required>
-        <button type="submit">Buscar</button>
-    </form>
+    <div class="main">
+        <div class="container">
+            <div class="logo">
+                <h1>Busca no Google Maps</h1>
+            </div>
+            <div class="form">
+                <form id="formBusca">
+                    <label>Qual e servico procurado ? </label>
+                    <input type="text" id="servico" placeholder="Serviço" required>
+                    <label>Qual cidade ?</label>
+                    <input type="text" id="cidade" placeholder="Cidade" required>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="resultado"></div>
 
     <script>
