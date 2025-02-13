@@ -1,53 +1,53 @@
 # Automação Google Maps
 
-## Objetivo  
+## 📌 Objetivo  
 O objetivo desse projeto é automatizar e registrar o resultado de buscas de empresas e prestadores de serviço cadastrados no Google Maps.  
 
-## Tecnologias Usadas  
-- Node.js  
-- Puppeteer  
-- Electron  
-- CSV Writer  
+## 🚀 Tecnologias Usadas  
+- [Node.js](https://nodejs.org/)
+- [Puppeteer](https://pptr.dev/)  
+- [Electron](https://www.electronjs.org/)  
+- [CSV Writer](https://www.npmjs.com/package/csv-writer)   
 
-## Funcionalidades  
-- Gera um link de busca conforme as informações passadas pelo usuário.  
-- Carrega todos os resultados para essa busca.  
-- Filtra para retornar somente os cadastros com informações válidas.  
-- Salva esses valores obtidos em um arquivo CSV.  
+## 🔹 Funcionalidades  
+✔️ Gera um link de busca conforme as informações passadas pelo usuário.  
+✔️ Carrega todos os resultados para essa busca.  
+✔️ Filtra para retornar somente os cadastros com informações válidas.  
+✔️ Salva esses valores obtidos em um arquivo CSV.  
 
-## Pré-requisitos  
+## ⚙️ Pré-requisitos  
 Antes de instalar, certifique-se de ter instalado:  
 - [Node.js](https://nodejs.org/)  
 - [Git](https://git-scm.com/)
   
-## Instalação  
+## 📥 Instalação  
 
-1. Clone este repositório:  
+- 1️⃣ Clone este repositório:  
    ```sh
    https://github.com/ArthurSilvaSS/Automation.git
-2. Instale as dependencias
+- 2️⃣ Instale as dependências:
    ```sh
    npm install
-3. Execete a aplicao
+- 3️⃣ Execute a aplicação:
    ```sh
     npm start
    
-  ## Contribuição  
+## 🤝 Contribuição  
 Contribuições são bem-vindas! Siga os passos abaixo:  
 
-1. Faça um fork do projeto.  
-2. Crie uma branch com sua feature:  
+- 1️⃣ Faça um fork do projeto.  
+- 2️⃣ Crie uma branch com sua feature:  
    ```sh
    git checkout -b minha-feature
-3. Commit suas mudanças:
+- 3️⃣ Commit suas mudanças:
    ```sh
    git commit -m "Adicionando nova funcionalidade"
-4. Envie para o repositório remoto
+- 4️⃣ Envie para o repositório remoto
    ```sh
    git push origin minha-feature
-5. Abra um Pull Request.
+- 5️⃣ Abra um Pull Request.
 
-   ## Licença
+   ## 📜 Licença
 
    Este projeto está sob a licença MIT - consulte o arquivo LICENSE para mais detalhes.
    
